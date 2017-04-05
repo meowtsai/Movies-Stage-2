@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -27,7 +26,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -36,7 +34,6 @@ import android.widget.Toast;
 
 import com.meowroll.movies.utilities.MovieDBJsonUtils;
 import com.meowroll.movies.utilities.NetworkUtils;
-import com.meowroll.movies.utilities.TrailersJsonUtils;
 import com.squareup.picasso.Picasso;
 
 
@@ -46,12 +43,7 @@ import org.json.JSONException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.net.URL;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 import static com.meowroll.movies.R.string.error_request_permission_storage;
 import static com.meowroll.movies.data.MovieContract.MovieEntry;

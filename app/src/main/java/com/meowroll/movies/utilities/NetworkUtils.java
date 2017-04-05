@@ -4,6 +4,7 @@ package com.meowroll.movies.utilities;
  * Created by Meow on 2017/1/3.
  */
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -27,9 +28,13 @@ public final class NetworkUtils {
 
     private static final String TAG = NetworkUtils.class.getSimpleName();
     private static final String apiKey = "YOUR_KEY";
+    
 
     private static final String THEMOVIEDB_API_URL =
             "https://api.themoviedb.org/3/movie/";
+    private static final String API_KEY_PARAM="api_key";
+    private static final String LANG_PARAM="language";
+    private static final String PAGE_PARAM="page";
 
     private static final String THEMOVIEDB_POSTER_URL ="https://image.tmdb.org/t/p/w500";
 
@@ -43,9 +48,9 @@ public final class NetworkUtils {
      */
     public static URL buildUrl(String rankingType) {
         Uri builtUri = Uri.parse(THEMOVIEDB_API_URL + rankingType).buildUpon()
-                .appendQueryParameter("api_key", apiKey)
-                .appendQueryParameter("language", "en-US")
-                .appendQueryParameter("page", "1")
+                .appendQueryParameter(API_KEY_PARAM, apiKey)
+                .appendQueryParameter(LANG_PARAM, "en-us")
+                .appendQueryParameter(PAGE_PARAM, "1")
                 .build();
 
         URL url = null;
@@ -63,8 +68,8 @@ public final class NetworkUtils {
 
     public static URL buildUrlForTrailers(String movieId) {
         Uri builtUri = Uri.parse(THEMOVIEDB_API_URL + movieId + "/videos").buildUpon()
-                .appendQueryParameter("api_key", apiKey)
-                .appendQueryParameter("language", "en-US")
+                .appendQueryParameter(API_KEY_PARAM, apiKey)
+                .appendQueryParameter(LANG_PARAM, "en-US")
                 .build();
 
         URL url = null;
@@ -81,8 +86,8 @@ public final class NetworkUtils {
 
     public static URL buildUrlForReviews(String movieId) {
         Uri builtUri = Uri.parse(THEMOVIEDB_API_URL + movieId + "/reviews").buildUpon()
-                .appendQueryParameter("api_key", apiKey)
-                .appendQueryParameter("language", "en-US")
+                .appendQueryParameter(API_KEY_PARAM, apiKey)
+                .appendQueryParameter(LANG_PARAM, "en-US")
                 .build();
 
         URL url = null;
@@ -108,7 +113,7 @@ public final class NetworkUtils {
             e.printStackTrace();
         }
 
-        Log.v(TAG, "buildUrlForPoster" + url);
+        //Log.v(TAG, "buildUrlForPoster" + url);
 
         return url;
     }
@@ -129,7 +134,7 @@ public final class NetworkUtils {
 
             boolean hasInput = scanner.hasNext();
             if (hasInput) {
-                Log.v(TAG, "return " );
+                //Log.v(TAG, "return " );
                 return scanner.next();
             } else {
                 return null;

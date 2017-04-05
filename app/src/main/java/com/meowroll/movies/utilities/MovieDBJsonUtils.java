@@ -19,7 +19,22 @@ import java.net.HttpURLConnection;
 
 public final class MovieDBJsonUtils {
 
+    private static final String JSON_RESULT_HEADING =
+            "results";
     private static final String TAG = NetworkUtils.class.getSimpleName();
+
+    private static final String JSON_POSTER_PATH ="poster_path";
+
+    private static final String JSON_RELEASE_DATE ="release_date";
+    private static final String JSON_OVERVIEW ="overview";
+
+    private static final String JSON_ID ="id";
+    private static final String JSON_ORIGINAL_TITLE ="original_title";
+
+    private static final String JSON_TITLE ="title";
+    private static final String JSON_VOTEAVG ="vote_average";
+
+
     /**
      * This method parses JSON from a web response and returns an array of Strings
      * describing the weather over various days from the forecast.
@@ -37,35 +52,16 @@ public final class MovieDBJsonUtils {
     public static String[] getSimpleMovieStringsFromJson(Context context, String movieJsonStr)
             throws JSONException {
 
-        //Log.v(TAG, "getSimpleMovieStringsFromJson " + movieJsonStr);
-        /* root of the item list */
-        final String j_result = "results";
-
 
 
         /* String array to hold each day's weather String */
         String[] parsedMovieData = null;
 
         JSONObject movieJson = new JSONObject(movieJsonStr);
-
-        /* Is there an error? */
-
-
-
-        JSONArray movieArray = movieJson.getJSONArray(j_result);
-
-
-
-
-        parsedMovieData = new String[movieArray.length()];
-
-        //long localDate = System.currentTimeMillis();
-        //long utcDate = SunshineDateUtils.getUTCDateFromLocal(localDate);
-        //long startDay = SunshineDateUtils.normalizeDate(utcDate);
+        JSONArray movieArray = movieJson.getJSONArray(JSON_RESULT_HEADING);
+         parsedMovieData = new String[movieArray.length()];
 
         for (int i = 0; i < movieArray.length(); i++) {
-            //Log.v(TAG, "movieArray.length()= " + movieArray.length());
-            /* These are the values that will be collected */
             String poster_path;
             String overview;
             String release_date;
@@ -75,25 +71,18 @@ public final class MovieDBJsonUtils {
             String title;
             String backdrop_path;
             double vote_average;
-
-
-
-
-            /* Get the JSON object representing each movie */
             JSONObject eachMovie = movieArray.getJSONObject(i);
 
+            poster_path = eachMovie.getString(JSON_POSTER_PATH);
+            release_date = eachMovie.getString(JSON_RELEASE_DATE);
+            overview = eachMovie.getString(JSON_OVERVIEW);
+            id = eachMovie.getString(JSON_ID);
+            original_title = eachMovie.getString(JSON_ORIGINAL_TITLE);
 
-
-            poster_path = eachMovie.getString("poster_path");
-            release_date = eachMovie.getString("release_date");
-            overview = eachMovie.getString("overview");
-            id = eachMovie.getString("id");
-            original_title = eachMovie.getString("original_title");
-            original_language = eachMovie.getString("original_language");
-            backdrop_path = eachMovie.getString("backdrop_path");
-            title = eachMovie.getString("title");
+            title = eachMovie.getString(JSON_TITLE);
             //Log.v(TAG, "title= " + title);
-            vote_average = eachMovie.getDouble("vote_average");
+            vote_average = eachMovie.getDouble(JSON_VOTEAVG);
+
 
 
             /*
@@ -113,11 +102,11 @@ public final class MovieDBJsonUtils {
             throws JSONException {
 
 
-        final String j_result = "results";
+
         String[] parsedData = null;
         JSONObject trailersJson = new JSONObject(JsonStr);
 
-        JSONArray mArray = trailersJson.getJSONArray(j_result);
+        JSONArray mArray = trailersJson.getJSONArray(JSON_RESULT_HEADING);
 
         return mArray;
 
@@ -156,7 +145,7 @@ public final class MovieDBJsonUtils {
                 double vote_average= cursor.getDouble(cursor.getColumnIndex(MovieContract.MovieEntry.COLUMN_AVGVOTE));
 
                 parsedMovieData[i] = title + "#" + original_title + "#" + poster_path + "#" + vote_average + "#" + release_date+ "#" + overview+ "#" + id;
-                Log.d("pref",  "getFavoriteMovies:" + String.valueOf(parsedMovieData[i].toString()));
+                //Log.d("pref",  "getFavoriteMovies:" + String.valueOf(parsedMovieData[i].toString()));
                 i++;
             }
         } finally {
