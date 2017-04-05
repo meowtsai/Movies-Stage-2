@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Movies</string>
+    <string name="error_message"> An error has occurred.</string>
+    <string name="plot_title">PLOT SYNOPSIS</string>
+    <string name="trailer_title">Trailers</string>
+    <string name="review_title">REVIEWS</string>
+    <string name="action_setting">Settings</string>
+    <string name="action_share">Share</string>
+
+
+    <string name="pref_sorting_key">pref_sorting_key</string>
+    <string name="pref_sorting_title">Sorted By</string>
+    <string name="pref_sorting_by_popularity_label">Most Popular</string>
+    <string name="pref_sorting_by_rating_label">Top Rated</string>
+    <string name="pref_sorting_by_popularity_value">popular</string>
+    <string name="pref_sorting_by_rating_value">top_rated</string>
+
+    <string name="pref_sorting_by_favorites_label">Favorites</string>
+    <string name="pref_sorting_by_favorites_value">favorites</string>
+
+
+
+    <string name="error_request_permission_storage">Unable to save the poster image file.</string>
+    <string name="add_completed">Added to favorite.</string>
+
+</resources>
